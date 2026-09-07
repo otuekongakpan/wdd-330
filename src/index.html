@@ -3,20 +3,22 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Sleep Outside provides everything you need to sleep outside comfortably at an affordable price. Shop tents, backpacks, sleeping bags and more." />
     <title>Sleep Outside | Home</title>
-    <link rel="stylesheet" href="/css/style.css" />
-    <script src="./js/main.js" type="module"></script>
+    <link rel="stylesheet" href="/css/style.css" media="print" onload="this.media='all'" />
+    <noscript><link rel="stylesheet" href="/css/style.css" /></noscript>
+    <script src="./js/main.js" type="module" defer></script>
   </head>
 
   <body>
-    <header class="divider">
+    <header class="divider" role="banner">
       <div class="logo">
-        <img src="/images/noun_Tent_2517.svg" alt="tent image for logo" />
+        <img src="/images/noun_Tent_2517.svg" alt="SleepOutside tent logo" loading="eager" decoding="async" width="60" height="60" />
         <a href="index.html"> Sleep<span class="highlight">Outside</span></a>
       </div>
       <div class="cart">
         <a href="cart/index.html" aria-label="Shopping Cart">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="25" height="25" aria-hidden="true" focusable="false">
             <path
               d="M18.9 32.6c1.1 2.4 2.5 3.3 5.4 3.3 1.6 0 3.6-0.3 5.9-0.6 3.2-0.5 6.9-1 11.2-1 2.1 0 4.3 0.1 6.4 0.3 2.1 0.1 4.2 0.3 6.1 0.3 3.2 0 5.2-0.4 5.9-1.2 2.7-2.7 2.8-8.8 2.9-14.6 0.1-6.7 0.2-14.5 4.6-18.7 -0.5 0-1 0-1.6 0 -14.2 0-37.5 0-41.1 0C15.6 6.2 14.9 23.6 18.9 32.6z"
             />
@@ -42,15 +44,18 @@
         </a>
       </div>
     </header>
-    <main class="divider">
+    <main class="divider" role="main">
       <div class="hero">
         <img
           src="/images/banner-sm.jpg"
-          srcset="images/banner-sm.jpg 500w, images/banner.jpg"
-          alt="image of a high mountain lake"
+          srcset="/images/banner-sm.jpg 500w, /images/banner.jpg 1080w"
+          sizes="(max-width: 500px) 500px, 1080px"
+          alt="High mountain lake with tents at sunset"
+          decoding="async"
+         
         />
         <div class="logo logo--square">
-          <img src="/images/noun_Tent_2517.svg" alt="tent image for logo" />
+          <img src="/images/noun_Tent_2517.svg" alt="SleepOutside tent logo" width="90" height="90" decoding="async" />
           <div>Sleep<span class="highlight">Outside</span></div>
         </div>
         <div class="mission">
@@ -61,12 +66,12 @@
         </div>
       </div>
 
-      <section class="products">
-        <h2>Top Products</h2>
-        <ul class="product-list"></ul>
+      <section class="products" aria-labelledby="top-products-heading">
+        <h2 id="top-products-heading">Top Products</h2>
+        <ul class="product-list" role="list"></ul>
       </section>
     </main>
-    <footer>
+    <footer role="contentinfo">
       &copy;2025 ⛺ SleepOutside ⛺ WDD 330 ⛺ BYU-Idaho for BYU-Pathway
       Worldwide Online
     </footer>
