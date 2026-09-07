@@ -157,10 +157,12 @@ button {
 }
 
 .product-list {
-  display: flex;
-  flex-flow: row wrap;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5em;
   list-style-type: none;
-  justify-content: center;
+  justify-items: center;
+  padding: 0;
 }
 
 .product-list a {
@@ -170,11 +172,10 @@ button {
 
 /* Styles for product lists */
 .product-card {
-  flex: 1 1 45%;
-  margin: 0.25em;
+  width: 100%;
+  max-width: 250px;
   padding: 0.5em;
   border: 1px solid var(--light-grey);
-  max-width: 250px;
 }
 
 .product-card h2,
