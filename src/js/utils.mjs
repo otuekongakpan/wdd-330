@@ -30,3 +30,17 @@ export function getParam(param) {
 
   return value;
 }
+
+export function getParam(param){
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  const product = urlParams.get('product')
+  return product;
+}
+
+export function renderListWithTemplate(templateFn, parentElement, list, position = 'afterbegin', clear = 'false')
+{
+  if(clear) {
+    parentElement = ''
+  }
+}
