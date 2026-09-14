@@ -10,19 +10,28 @@ export default class ProductDetails {
   async init() {
     this.product = await this.dataSource.findProductById(this.productId);
 
+    if (!this.product) {
+      return;
+    }
+
     this.renderProductDetails();
 
-    document
-      .getElementById('addToCart')
-      .addEventListener('click', this.addProductToCart.bind(this));
+    const addToCartButton = document.getElementById('addToCart');
+    if (addToCartButton) {
+      addToCartButton.addEventListener('click', this.addProductToCart.bind(this));
+    }
   }
 
   addProductToCart() {
-    let cart = getLocalStorage('so-cart') || [];
+    if (!this.product || !this.product.Id) {
+      return;
+    }
 
+    const cart = Array.isArray(getLocalStorage('so-cart')) ? getLocalStorage('so-cart') : [];
     cart.push(this.product);
 
     setLocalStorage('so-cart', cart);
+    window.location.href = '/cart/index.html';
   }
 
   renderProductDetails() {

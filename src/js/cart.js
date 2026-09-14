@@ -1,58 +1,53 @@
-import { getLocalStorage, setLocalStorage } from './utils.mjs';
+import { getLocalStorage, setLocalStorage } from "./utils.mjs";
 
-export default class ProductDetails {
-  constructor(productId, dataSource) {
-    this.productId = productId;
-    this.product = {};
-    this.dataSource = dataSource;
+function renderCartContents() {
+  const cartItems = getLocalStorage("so-cart") || [];
+  const cartList = document.querySelector(".product-list");
+
+  if (!cartList) return;
+
+  if (!cartItems.length) {
+    cartList.innerHTML = "<li><p>Your cart is empty.</p></li>";
+    return;
   }
 
-  async init() {
-    // Get the product details
-    this.product = await this.dataSource.findProductById(this.productId);
+  cartList.innerHTML = cartItems
+    .map(
+      (item, index) => `
+        <li class="cart-card divider">
+          <a href="../product_pages/index.html?product=${item.Id}" class="cart-card__image">
+            <img src="${item.Image}" alt="${item.Name}" />
+          </a>
+          <a href="../product_pages/index.html?product=${item.Id}">
+            <h2 class="card__name">${item.Name}</h2>
+          </a>
+          <p class="cart-card__color">${item.Colors?.[0]?.ColorName || "Standard color"}</p>
+          <p class="cart-card__quantity">qty: 1</p>
+          <p class="cart-card__price">$${item.FinalPrice ?? item.ListPrice ?? 0}</p>
+          <button class="cart-card__remove" data-index="${index}">Remove</button>
+        </li>
+      `,
+    )
+    .join("");
 
-    // Render the product details
-    this.renderProductDetails();
-
-    // Add a listener to the Add to Cart button
-    document
-      .getElementById('addToCart')
-      .addEventListener('click', this.addProductToCart.bind(this));
-  }
-
-  addProductToCart() {
-    let cart = getLocalStorage('so-cart') || [];
-
-    cart.push(this.product);
-
-    setLocalStorage('so-cart', cart);
-  }
-
-  renderProductDetails() {
-    document.querySelector('.product-detail').innerHTML = `
-      <h3>${this.product.Brand.Name}</h3>
-
-      <h2 class="divider">${this.product.NameWithoutBrand}</h2>
-
-      <img
-        class="divider"
-        src="${this.product.Images.PrimaryLarge}"
-        alt="${this.product.Name}"
-      />
-
-      <p class="product-card__price">$${this.product.FinalPrice}</p>
-
-      <p class="product__color">${this.product.Colors[0].ColorName}</p>
-
-      <p class="product__description">
-        ${this.product.DescriptionHtmlSimple}
-      </p>
-
-      <div class="product-detail__add">
-        <button id="addToCart" data-id="${this.product.Id}">
-          Add to Cart
-        </button>
-      </div>
-    `;
-  }
+  // Add event listeners to remove buttons
+  document.querySelectorAll(".cart-card__remove").forEach((button) => {
+    button.addEventListener("click", removeFromCart);
+  });
 }
+
+function removeFromCart(event) {
+  const index = event.target.getAttribute("data-index");
+  const cartItems = getLocalStorage("so-cart") || [];
+
+  // Remove the item at the specified index
+  cartItems.splice(index, 1);
+
+  // Update local storage
+  setLocalStorage("so-cart", cartItems);
+
+  // Re-render the cart
+  renderCartContents();
+}
+
+document.addEventListener("DOMContentLoaded", renderCartContents);
