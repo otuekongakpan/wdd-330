@@ -39,7 +39,7 @@ export default class ProductDetails {
       <h2>${this.product.Name}</h2>
 
       <img src="${this.product.Image}" alt="${this.product.Name}">
-      <p>${this.product.FinalPrice}</p>
+      <p>${this.product.ListPrice}</p>
       <p>${this.product.Colors[0].ColorName}</p>
 
       <p>${this.product.DescriptionHtmlSimple}</p>
