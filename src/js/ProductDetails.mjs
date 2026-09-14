@@ -17,10 +17,12 @@ export default class ProductDetails {
             .addEventListener('click', this.addProductToCart.bind(this))
     }
 
-    addProductToCart() {
-        let cart = getLocalStorage('so-cart') || [];
-
-        cart.push(this.product);
+  init() {
+    this.dataSource.findProductById(this.productId).then((product) => {
+      this.product = product;
+      this.renderProductDetails();
+      document.getElementById('addToCart')
+      .addEventListener('click', this.addProductToCart.bind(this));
 
         setLocalStorage('so-cart', cart);
     }
