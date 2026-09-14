@@ -1,17 +1,21 @@
-function convertToJson(res) {
-  if (res.ok) {
-    return res.json();
-  } else {
-    throw new Error("Bad Response");
-  }
-}
+import { setLocalStorage, getLocalStorage, getParam } from './utils.mjs';
+
 
 export default class ProductDetails {
-  constructor(productId, dataSource) {
-    this.productId = productId;
-    this.product = {};
-    this.dataSource = dataSource;
-  }
+    constructor(productId, dataSource) {
+        this.productId = productId;
+        this.product = {};
+        this.dataSource = dataSource;
+    }
+
+    async init() {
+        this.product = await this.dataSource.findProductById(this.productId);
+        this.renderProductDetails();
+
+        document
+            .getElementById('addToCart')
+            .addEventListener('click', this.addProductToCart.bind(this))
+    }
 
   init() {
     this.dataSource.findProductById(this.productId).then((product) => {
@@ -20,31 +24,35 @@ export default class ProductDetails {
       document.getElementById('addToCart')
       .addEventListener('click', this.addProductToCart.bind(this));
 
-    });
-  }
+        setLocalStorage('so-cart', cart);
+    }
 
-  addProductToCart() {
-    const cartItems = JSON.parse(localStorage.getItem("so-cart")) || [];
-    cartItems.push(this.product);
-    localStorage.setItem("so-cart", JSON.stringify(cartItems));
+    renderProductDetails() {
+        const disInfo = document.querySelector(".product-detail__add")
 
-  }
+        disInfo.innerHTML = `
+        <section class="product-detail">
+            <h3>${this.product.Brand.Name}</h3>
 
-  renderProductDetails() {
+            <h2 class="divider">${this.product.Name}</h2>
 
-    const productDetailsContainer = document.querySelector('.product-detail');
-    productDetailsContainer.innerHTML = `
-      <h3>${this.product.Brand.Name}</h3>
-      <h2>${this.product.Name}</h2>
+            <img class="divider"
+                src="${this.product.Image}"
+                alt="${this.product.Name}" />
 
-      <img src="${this.product.Image}" alt="${this.product.Name}">
-      <p>${this.product.FinalPrice}</p>
-      <p>${this.product.Colors[0].ColorName}</p>
+            <p class="product-card__price">$${this.product.ListPrice}</p>
 
-      <p>${this.product.DescriptionHtmlSimple}</p>
-      <button id="addToCart" data-id="${this.product.Id}">Add to Cart</button>
-    `;
-  }
+            <p class="product__color">${this.product.Colors[0].ColorName}</p>
 
+            <p class="product__description">${this.product.DescriptionHtmlSimple}</p>
 
+            <div class="product-detail__add">
+                <button id="addToCart" data-id="${this.product.Id}">Add to Cart</button>
+            </div>
+        </section>
+
+    `
+    }
 }
+
+
