@@ -28,25 +28,6 @@ export function getParam(param) {
   return urlParams.get(param);
 }
 
-export function renderListWithTemplate(
-  templateFn,
-  parentElement,
-  list,
-  position = 'afterbegin',
-  clear = false
-) {
-  // If clear is true, empty the parent element first
-  if (clear) {
-    parentElement.innerHTML = '';
-  }
-
-  // Transform each item in the list into an HTML string
-  const htmlStrings = list.map(templateFn);
-
-  // Insert all the HTML at once
-  parentElement.insertAdjacentHTML(position, htmlStrings.join(''));
-}
-
 export function renderListWithTemplate(templateFn, parentElement, list, position = "afterbegin", clear = false) {
   const htmlStrings = list.map(templateFn);
 
