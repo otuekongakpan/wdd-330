@@ -33,11 +33,16 @@ export default class ProductDetails {
 
   renderProductDetails() {
 
+    const isDiscounted = this.product.FinalPrice < this.product.SuggestedRetailPrice;
+    const discountPercent = isDiscounted
+      ? Math.round(((this.product.SuggestedRetailPrice - this.product.FinalPrice) / this.product.SuggestedRetailPrice) * 100)
+      : 0;
+
     const productDetailsContainer = document.querySelector('.product-detail');
     productDetailsContainer.innerHTML = `
       <h3>${this.product.Brand.Name}</h3>
       <h2>${this.product.Name}</h2>
-
+      ${isDiscounted ? `<span class="discount-badge">${discountPercent}% OFF</span>` : ''}
       <img src="${this.product.Image}" alt="${this.product.Name}">
       <p>$${this.product.ListPrice}</p>
       <p>${this.product.Colors[0].ColorName}</p>
