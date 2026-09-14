@@ -1,10 +1,4 @@
-function convertToJson(res) {
-  if (res.ok) {
-    return res.json();
-  } else {
-    throw new Error("Bad Response");
-  }
-}
+import { getLocalStorage, setLocalStorage } from './utils.mjs';
 
 export default class ProductDetails {
   constructor(productId, dataSource) {
@@ -13,39 +7,49 @@ export default class ProductDetails {
     this.dataSource = dataSource;
   }
 
-  init() {
-    this.dataSource.findProductById(this.productId).then((product) => {
-      this.product = product;
-      this.renderProductDetails();
+  async init() {
+    this.product = await this.dataSource.findProductById(this.productId);
 
-      document.getElementById('addToCart')
+    this.renderProductDetails();
+
+    document
+      .getElementById('addToCart')
       .addEventListener('click', this.addProductToCart.bind(this));
-
-    });
   }
 
   addProductToCart() {
-    const cartItems = JSON.parse(localStorage.getItem("so-cart")) || [];
-    cartItems.push(this.product);
-    localStorage.setItem("so-cart", JSON.stringify(cartItems));
+    let cart = getLocalStorage('so-cart') || [];
 
+    cart.push(this.product);
+
+    setLocalStorage('so-cart', cart);
   }
 
   renderProductDetails() {
-
-    const productDetailsContainer = document.querySelector('.product-detail');
-    productDetailsContainer.innerHTML = `
+    document.querySelector('.product-detail').innerHTML = `
       <h3>${this.product.Brand.Name}</h3>
-      <h2>${this.product.Name}</h2>
 
-      <img src="${this.product.Image}" alt="${this.product.Name}">
-      <p>${this.product.ListPrice}</p>
-      <p>${this.product.Colors[0].ColorName}</p>
+      <h2 class="divider">${this.product.NameWithoutBrand}</h2>
 
-      <p>${this.product.DescriptionHtmlSimple}</p>
-      <button id="addToCart" data-id="${this.product.Id}">Add to Cart</button>
+      <img
+        class="divider"
+        src="${this.product.Image}"
+        alt="${this.product.Name}"
+      />
+
+      <p class="product-card__price">$${this.product.FinalPrice}</p>
+
+      <p class="product__color">${this.product.Colors[0].ColorName}</p>
+
+      <p class="product__description">
+        ${this.product.DescriptionHtmlSimple}
+      </p>
+
+      <div class="product-detail__add">
+        <button id="addToCart" data-id="${this.product.Id}">
+          Add to Cart
+        </button>
+      </div>
     `;
   }
-
-
 }

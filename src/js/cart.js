@@ -1,28 +1,58 @@
-import { getLocalStorage } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage } from './utils.mjs';
 
-function renderCartContents() {
-  const cartItems = getLocalStorage("so-cart");
-  const htmlItems = cartItems.map((item) => cartItemTemplate(item));
-  document.querySelector(".product-list").innerHTML = htmlItems.join("");
+export default class ProductDetails {
+  constructor(productId, dataSource) {
+    this.productId = productId;
+    this.product = {};
+    this.dataSource = dataSource;
+  }
+
+  async init() {
+    // Get the product details
+    this.product = await this.dataSource.findProductById(this.productId);
+
+    // Render the product details
+    this.renderProductDetails();
+
+    // Add a listener to the Add to Cart button
+    document
+      .getElementById('addToCart')
+      .addEventListener('click', this.addProductToCart.bind(this));
+  }
+
+  addProductToCart() {
+    let cart = getLocalStorage('so-cart') || [];
+
+    cart.push(this.product);
+
+    setLocalStorage('so-cart', cart);
+  }
+
+  renderProductDetails() {
+    document.querySelector('.product-detail').innerHTML = `
+      <h3>${this.product.Brand.Name}</h3>
+
+      <h2 class="divider">${this.product.NameWithoutBrand}</h2>
+
+      <img
+        class="divider"
+        src="${this.product.Images.PrimaryLarge}"
+        alt="${this.product.Name}"
+      />
+
+      <p class="product-card__price">$${this.product.FinalPrice}</p>
+
+      <p class="product__color">${this.product.Colors[0].ColorName}</p>
+
+      <p class="product__description">
+        ${this.product.DescriptionHtmlSimple}
+      </p>
+
+      <div class="product-detail__add">
+        <button id="addToCart" data-id="${this.product.Id}">
+          Add to Cart
+        </button>
+      </div>
+    `;
+  }
 }
-
-function cartItemTemplate(item) {
-  const newItem = `<li class="cart-card divider">
-  <a href="#" class="cart-card__image">
-    <img
-      src="${item.Image}"
-      alt="${item.Name}"
-    />
-  </a>
-  <a href="#">
-    <h2 class="card__name">${item.Name}</h2>
-  </a>
-  <p class="cart-card__color">${item.Colors[0].ColorName}</p>
-  <p class="cart-card__quantity">qty: 1</p>
-  <p class="cart-card__price">$${item.FinalPrice}</p>
-</li>`;
-
-  return newItem;
-}
-
-renderCartContents();
