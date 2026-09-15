@@ -261,3 +261,13 @@ footer {
   font-size: var(--small-font);
   padding: 1em;
 }
+.discount {
+  display: inline-block;
+  background-color: #d9534f;
+  color: white;
+  padding: 5px 8px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
