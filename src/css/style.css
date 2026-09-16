@@ -1,6 +1,7 @@
 :root {
   --font-body: Arial, Helvetica, sans-serif;
-  --font-headline: Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  --font-headline: Haettenschweiler, "Arial Narrow Bold", Arial Narrow, sans-serif;
+  font-display: swap;
   /* colors */
   --primary-color: #f0a868;
   --secondary-color: #525b0f;
@@ -157,10 +158,12 @@ button {
 }
 
 .product-list {
-  display: flex;
-  flex-flow: row wrap;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5em;
   list-style-type: none;
-  justify-content: center;
+  justify-items: center;
+  padding: 0;
 }
 
 .product-list a {
@@ -170,11 +173,10 @@ button {
 
 /* Styles for product lists */
 .product-card {
-  flex: 1 1 45%;
-  margin: 0.25em;
+  width: 100%;
+  max-width: 250px;
   padding: 0.5em;
   border: 1px solid var(--light-grey);
-  max-width: 250px;
 }
 
 .product-card h2,
@@ -260,4 +262,46 @@ button {
 footer {
   font-size: var(--small-font);
   padding: 1em;
+}
+
+/* Discount Badge */
+.discount-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #e74c3c;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: bold;
+  z-index: 10;
+}
+
+/* Pricing Styles */
+.product-card__pricing {
+  margin-top: 8px;
+}
+
+.original-price {
+  text-decoration: line-through;
+  color: #999;
+  font-size: 14px;
+  margin-right: 8px;
+}
+
+.discounted-price {
+  color: #e74c3c;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.regular-price {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* Make product card relative for absolute positioning of badge */
+.product-card {
+  position: relative;
 }
