@@ -50,7 +50,7 @@ export function renderWithTemplate(template, parentElement, data, callBackFn) {
 }
 
 async function loadTemplate(path){
-  const res = await fetch(`../public/partials/${path}.html`);
+  const res = await fetch(`../partials/${path}.html`);
   if(res.ok)
   {
     const data = res.text();

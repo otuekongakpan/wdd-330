@@ -10,7 +10,8 @@ export default class Alert {
   }
 
   async init() {
-    this.alerts = await new ProductData("alerts").getData();
+    const response = await fetch("../json/alerts.json");
+    this.alerts = await response.json();
   }
 
   async createAlerts() {
