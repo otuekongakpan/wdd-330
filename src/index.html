@@ -1,64 +1,116 @@
 <!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Sleep Outside provides everything you need to sleep outside comfortably at an affordable price. Shop tents, backpacks, sleeping bags and more."
+    />
+    <title>Sleep Outside | Home</title>
+    <link
+      rel="stylesheet"
+      href="/css/style.css"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link rel="stylesheet" href="/css/style.css" />
+    </noscript>
+    <script src="./js/main.js" type="module" defer></script>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description"
-    content="Sleep Outside provides everything you need to sleep outside comfortably at an affordable price. Shop tents, backpacks, sleeping bags and more." />
-  <title>Sleep Outside | Home</title>
-  <link rel="stylesheet" href="/css/style.css" media="print" onload="this.media='all'" />
-  <noscript>
-    <link rel="stylesheet" href="/css/style.css" />
-  </noscript>
-  <script src="./js/main.js" type="module" defer></script>
-</head>
-
-<body>
-  <header class="divider" role="banner" id="main-header">
-    
-  </header>
-  <main class="divider" role="main">
-    <div class="hero">
-      <img src="/images/banner-sm.jpg" srcset="/images/banner-sm.jpg 500w, /images/banner.jpg 1080w"
-        sizes="(max-width: 500px) 500px, 1080px" alt="High mountain lake with tents at sunset" decoding="async" />
-      <div class="logo logo--square">
-        <img src="/images/noun_Tent_2517.svg" alt="SleepOutside tent logo" width="90" height="90" decoding="async" />
-        <div>Sleep<span class="highlight">Outside</span></div>
+  <body>
+    <header class="divider" role="banner" id="main-header"></header>
+    <main class="divider" role="main">
+      <div class="hero">
+        <img
+          src="/images/banner-sm.jpg"
+          srcset="/images/banner-sm.jpg 500w, /images/banner.jpg 1080w"
+          sizes="(max-width: 500px) 500px, 1080px"
+          alt="High mountain lake with tents at sunset"
+          decoding="async"
+        />
+        <div class="logo logo--square">
+          <img
+            src="/images/noun_Tent_2517.svg"
+            alt="SleepOutside tent logo"
+            width="90"
+            height="90"
+            decoding="async"
+          />
+          <div>Sleep<span class="highlight">Outside</span></div>
+        </div>
+        <div class="mission">
+          <p>
+            Our mission is to provide you with everything you need to sleep
+            outside comfortably at an affordable price.
+          </p>
+        </div>
       </div>
-      <div class="mission">
-        <p>
-          Our mission is to provide you with everything you need to sleep
-          outside comfortably at an affordable price.
-        </p>
-      </div>
-    </div>
 
-    <section class="products" aria-labelledby="top-products-heading">
-      <h2 id="top-products-heading">Top Products</h2>
-      <ul class="product-list" role="list">
-        <a href="./product_listing/?category=tents">
-          <img src="https://byui-cse.github.io/wdd330-ww-course/images/category-tents.svg" alt="Tents" width="150" height="150">
-          <h3>Tents</h3>
-        </a>
-        <a href="./product_listing/?category=backpacks">
-          <img src="https://byui-cse.github.io/wdd330-ww-course/images/category-backpacks.svg" alt="Back Packs" width="150" height="150">
-          <h3>Back Packs</h3>
-        </a>
-        <a href="./product_listing/?category=sleeping-bags">
-          <img src="https://byui-cse.github.io/wdd330-ww-course/images/category-sleepingbags.svg" alt="S;eeping Bag" width="150" height="150">
-          <h3>Sleeping Bag</h3>
-        </a>
-        <a href="./product_listing/?category=hammocks">
-          <img src="https://byui-cse.github.io/wdd330-ww-course/images/category-hammocks.svg" alt="Hammocks" width="150" height="150">
-          <h3>hammocks</h3>
-        </a>
-      </ul>
-    </section>
-  </main>
-  <footer role="contentinfo" id="main-footer">
-   
-  </footer>
-</body>
+      <section class="products" aria-labelledby="top-products-heading">
+        <h2 id="top-products-heading">Top Products</h2>
+        <ul class="product-list" role="list">
+          <a href="./product_listing/?category=tents">
+            <img
+              src="https://byui-cse.github.io/wdd330-ww-course/images/category-tents.svg"
+              alt="Tents"
+              width="150"
+              height="150"
+            />
+            <h3>Tents</h3>
+          </a>
+          <a href="./product_listing/?category=backpacks">
+            <img
+              src="https://byui-cse.github.io/wdd330-ww-course/images/category-backpacks.svg"
+              alt="Back Packs"
+              width="150"
+              height="150"
+            />
+            <h3>Back Packs</h3>
+          </a>
+          <a href="./product_listing/?category=sleeping-bags">
+            <img
+              src="https://byui-cse.github.io/wdd330-ww-course/images/category-sleepingbags.svg"
+              alt="S;eeping Bag"
+              width="150"
+              height="150"
+            />
+            <h3>Sleeping Bag</h3>
+          </a>
+          <a href="./product_listing/?category=hammocks">
+            <img
+              src="https://byui-cse.github.io/wdd330-ww-course/images/category-hammocks.svg"
+              alt="Hammocks"
+              width="150"
+              height="150"
+            />
+            <h3>hammocks</h3>
+          </a>
+        </ul>
+      </section>
 
+      <section id="newsltt">
+        <p>Sign up to our daily news letter.</p>
+        <div class="cont">
+          <div>
+            <label for="nletter">Email</label>
+            <input
+              type="eamil"
+              id="nletter"
+              name="nletter"
+              class="s-edd email"
+            />
+          </div>
+          <div>
+            <button type="button" id="newsbtt" class="s-edd signup">
+              Sign up
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer role="contentinfo" id="main-footer"></footer>
+  </body>
 </html>

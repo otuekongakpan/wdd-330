@@ -306,3 +306,36 @@ footer {
 .product-card {
   position: relative;
 }
+
+#newsltt {
+  margin-bottom: 1rem;
+}
+
+#newsltt .cont {
+  display: flex;
+}
+
+#newsltt .cont label {
+  font-size: 1.5rem;
+}
+
+.s-edd {
+  /* display: block; */
+  padding: 0.8rem;
+  font-size: 1rem;
+  border: none;
+}
+
+.email,
+.signup {
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+}
+
+.email {
+  border-left: 2px solid black;
+}
+
+.signup {
+  border-right: 2px solid black;
+}

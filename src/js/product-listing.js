@@ -5,7 +5,7 @@ import { loadHeaderFooter } from "./utils.mjs";
 
 loadHeaderFooter();
 
-const category = getParam("category"); 
+const category = getParam("category");
 
 const dataSource = new ProductData();
 const listElement = document.querySelector(".product-list");
@@ -15,4 +15,4 @@ myList.init();
 
 const title = document.getElementById("top-products-heading");
 
-title.textContent= `Top Products: ${category.charAt(0).toUpperCase() + category.slice(1).toLocaleLowerCase()}`;
+title.textContent = `Top Products: ${category.charAt(0).toUpperCase() + category.slice(1).toLocaleLowerCase()}`;
