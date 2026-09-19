@@ -4,11 +4,11 @@ import { loadHeaderFooter } from './utils.mjs';
 function renderCartContents() {
   const cartItems = getLocalStorage('so-cart');
   if (!cartItems || cartItems.length === 0) {
-    document.querySelector('.product-list').innerHTML = `<p>Your cart is empty.</p>`;
+    document.querySelector('.cart-list').innerHTML = `<p>Your cart is empty.</p>`;
     return;
   };
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
-  document.querySelector('.product-list').innerHTML = htmlItems.join('');
+  document.querySelector('.cart-list').innerHTML = htmlItems.join('');
 
   let total = 0;
   cartItems.map((item)=>{
@@ -26,7 +26,7 @@ function cartItemTemplate(item) {
   const newItem = `<li class="cart-card divider">
   <a href="#" class="cart-card__image">
     <img
-      src="${item.Image}"
+      src="${item.Images.PrimaryMedium}"
       alt="${item.Name}"
     />
   </a>
