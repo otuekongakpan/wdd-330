@@ -1,0 +1,104 @@
+[
+  {
+    "Id": "880RR",
+    "Name": "Marmot Ajax Tent - 3-Person, 3-Season",
+    "NameWithoutBrand": "Ajax Tent - 3-Person, 3-Season",
+    "Brand": {
+      "Name": "Marmot"
+    },
+    "Image": "/images/tents/marmot-ajax-tent-3-person-3-season-in-pale-pumpkin-terracotta~p~880rr_01~320.jpg",
+    "FinalPrice": 199.99,
+    "SuggestedRetailPrice": 300.0,
+    "Colors": [
+      {
+        "ColorName": "Pale Pumpkin/Terracotta"
+      }
+    ],
+    "DescriptionHtmlSimple": "Marmot Ajax tent durable waterproof 3-person."
+  },
+  {
+    "Id": "880RT",
+    "Name": "Marmot Ajax Tent - 2-Person, 3-Season",
+    "NameWithoutBrand": "Ajax Tent - 2-Person, 3-Season",
+    "Brand": {
+      "Name": "Marmot"
+    },
+    "Image": "/images/tents/marmot-ajax-tent-2-person-3-season-in-pale-pumpkin-terracotta~p~880rt_01~320.jpg",
+    "FinalPrice": 179.99,
+    "SuggestedRetailPrice": 275.0,
+    "Colors": [
+      {
+        "ColorName": "Pale Pumpkin/Terracotta"
+      }
+    ],
+    "DescriptionHtmlSimple": "Marmot Ajax tent 2-person."
+  },
+  {
+    "Id": "880RU",
+    "Name": "Marmot Tungsten Tent - 4-Person, 3-Season",
+    "NameWithoutBrand": "Tungsten Tent - 4-Person, 3-Season",
+    "Brand": {
+      "Name": "Marmot"
+    },
+    "Image": "/images/tents/marmot-ajax-tent-3-person-3-season-in-pale-pumpkin-terracotta~p~880rr_01~320.jpg",
+    "FinalPrice": 249.99,
+    "SuggestedRetailPrice": 350.0,
+    "Colors": [
+      {
+        "ColorName": "Green"
+      }
+    ],
+    "DescriptionHtmlSimple": "Marmot Tungsten 4-person tent."
+  },
+  {
+    "Id": "985RF",
+    "Name": "The North Face Talus Tent - 4-Person, 3-Season",
+    "NameWithoutBrand": "Talus Tent - 4-Person, 3-Season",
+    "Brand": {
+      "Name": "The North Face"
+    },
+    "Image": "/images/tents/the-north-face-talus-tent-4-person-3-season-in-golden-oak-saffron-yellow~p~985rf_01~320.jpg",
+    "FinalPrice": 199.99,
+    "SuggestedRetailPrice": 299.0,
+    "Colors": [
+      {
+        "ColorName": "Golden Oak/Saffron Yellow"
+      }
+    ],
+    "DescriptionHtmlSimple": "North Face Talus 4-person."
+  },
+  {
+    "Id": "989CG",
+    "Name": "The North Face Talus Tent - 3-Person, 3-Season",
+    "NameWithoutBrand": "Talus Tent - 3-Person, 3-Season",
+    "Brand": {
+      "Name": "The North Face"
+    },
+    "Image": "/images/tents/the-north-face-talus-tent-3-person-3-season-in-golden-oak-saffron-yellow~p~989cg_01~320.jpg",
+    "FinalPrice": 179.99,
+    "SuggestedRetailPrice": 270.0,
+    "Colors": [
+      {
+        "ColorName": "Golden Oak/Saffron Yellow"
+      }
+    ],
+    "DescriptionHtmlSimple": "North Face Talus 3-person."
+  },
+  {
+    "Id": "985PR",
+    "Name": "The North Face Alpine Guide Tent - 3-Person, 4-Season",
+    "NameWithoutBrand": "Alpine Guide Tent - 3-Person, 4-Season",
+    "Brand": {
+      "Name": "The North Face"
+    },
+    "Image": "/images/tents/the-north-face-alpine-guide-tent-3-person-4-season-in-canary-yellow-high-rise-grey~p~985pr_01~320.jpg",
+    "FinalPrice": 349.99,
+    "SuggestedRetailPrice": 489.0,
+    "Colors": [
+      {
+        "ColorName": "Canary Yellow/High Rise Grey"
+      }
+    ],
+    "DescriptionHtmlSimple": "North Face Alpine Guide 4-season tent."
+  }
+]
