@@ -3,7 +3,7 @@ import { defineConfig } from 'vite';
 
 export default defineConfig({
   root: 'src/',
-  publicDir: 'public',
+  publicDir: resolve(__dirname, 'src/public'),
   build: {
     outDir: '../dist',
     rollupOptions: {
@@ -16,7 +16,5 @@ export default defineConfig({
       },
     },
   },
-  server: {
-    port: 5174
-  }
+  server: { port: 5174 }
 });
