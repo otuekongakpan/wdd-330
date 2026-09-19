@@ -43,7 +43,7 @@ export default class ProductDetails {
       <h3>${this.product.Brand.Name}</h3>
       <h2>${this.product.Name}</h2>
       ${isDiscounted ? `<span class="discount-badge">${discountPercent}% OFF</span>` : ''}
-      <img src="${this.product.Image}" alt="${this.product.Name}">
+      <img src="${this.product.Images.PrimaryLarge}" alt="${this.product.Name}">
       <p>$${this.product.ListPrice}</p>
       <p>${this.product.Colors[0].ColorName}</p>
 
