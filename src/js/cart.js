@@ -11,10 +11,9 @@ const cartItems = cart.init();
 if (!cartItems || cartItems.length === 0) {
   listElement.innerHTML = '<p>Your cart is empty.</p>';
 } else {
-  // Render items using the class
   cart.renderCart(cartItems);
 
-  // Calculate total
+  // Sum every entry (each entry = 1 unit since duplicates are separate)
   const total = cartItems.reduce((sum, item) => sum + item.FinalPrice, 0);
 
   const cartFooter = document.querySelector('.cart-footer');
