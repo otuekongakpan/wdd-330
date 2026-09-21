@@ -419,3 +419,48 @@ footer {
   border-color: #666;
   outline: none;
 }
+
+.alert {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+  border-radius: 4px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+}
+
+.alert p {
+  margin: 0;
+}
+
+.alert-close {
+  cursor: pointer;
+  font-weight: bold;
+  padding: 0 0.5rem;
+  user-select: none;
+}
+
+.alert-close:hover {
+  color: #000;
+}
+
+.success-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.success-actions .btn {
+  padding: 0.75rem 1.5rem;
+  background: var(--secondary-color);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.success-actions .btn:hover {
+  background: var(--tertiary-color);
+}

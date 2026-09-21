@@ -60,8 +60,6 @@ export default class CheckoutProcess {
       `$${this.orderTotal.toFixed(2)}`;
   }
 
-  // Groups duplicate cart entries into single entries with a quantity count.
-  // The server expects each product once, with "quantity" telling it how many.
   packageItems(items) {
     const grouped = {};
 
@@ -81,16 +79,21 @@ export default class CheckoutProcess {
     return Object.values(grouped);
   }
 
-  async checkout(form) {
-    const order = formDataToJSON(form);
+ async checkout(form) {
+  const order = formDataToJSON(form);
 
-    order.orderDate = new Date().toISOString();
-    order.orderTotal = this.orderTotal.toFixed(2);
-    order.tax = this.tax.toFixed(2);
-    order.shipping = this.shipping;
-    order.items = this.packageItems(this.list);
+  order.orderDate = new Date().toISOString();
+  order.orderTotal = this.orderTotal.toFixed(2);
+  order.tax = this.tax.toFixed(2);
+  order.shipping = this.shipping;
+  order.items = this.packageItems(this.list);
 
+  try {
     const res = await services.checkout(order);
     return res;
+  } catch (err) {
+    console.error('Checkout error:', err);
+    throw err;   
   }
+}
 }

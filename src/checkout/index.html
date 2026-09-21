@@ -20,48 +20,47 @@
 
       <div class="checkout-layout">
         <form id="checkout-form">
-          <fieldset>
-            <legend>Customer Name</legend>
-            <label>First Name
-              <input type="text" name="fname" id="fname" required />
-            </label>
-            <label>Last Name
-              <input type="text" name="lname" id="lname" required />
-            </label>
-          </fieldset>
+  <fieldset>
+    <legend>Customer Name</legend>
+    <label>First Name
+      <input type="text" name="fname" id="fname" required />
+    </label>
+    <label>Last Name
+      <input type="text" name="lname" id="lname" required />
+    </label>
+  </fieldset>
 
-          <fieldset>
-            <legend>Address</legend>
-            <label>Street
-              <input type="text" name="street" id="street" required />
-            </label>
-            <label>City
-              <input type="text" name="city" id="city" required />
-            </label>
-            <label>State
-              <input type="text" name="state" id="state" required />
-            </label>
-            <label>Zip Code
-              <input type="text" name="zip" id="zip" required />
-            </label>
-          </fieldset>
+  <fieldset>
+    <legend>Address</legend>
+    <label>Street
+      <input type="text" name="street" id="street" required />
+    </label>
+    <label>City
+      <input type="text" name="city" id="city" required />
+    </label>
+    <label>State
+      <input type="text" name="state" id="state" required />
+    </label>
+    <label>Zip Code
+      <input type="text" name="zip" id="zip" required />
+    </label>
+  </fieldset>
 
-          <fieldset>
-            <legend>Payment</legend>
-            <label>Card Number
-              <input type="text" name="cardNumber" id="cardNumber" required />
-            </label>
-            <label>Expiration (MM/YY)
-              <input type="text" name="expiration" id="expiration" required />
-            </label>
-            <label>Security Code
-              <input type="text" name="code" id="code" required />
-            </label>
-          </fieldset>
+  <fieldset>
+    <legend>Payment</legend>
+    <label>Card Number
+      <input type="text" name="cardNumber" id="cardNumber" required />
+    </label>
+    <label>Expiration (MM/YY)
+      <input type="text" name="expiration" id="expiration" required />
+    </label>
+    <label>Security Code
+      <input type="text" name="code" id="code" required />
+    </label>
+  </fieldset>
 
-          <button type="submit">Checkout</button>
-        </form>
-
+  <button type="submit" id="checkoutSubmit">Checkout</button>
+</form>
         <aside class="order-summary">
           <h3>Order Summary</h3>
           <p>Items: <span id="num-items">0</span></p>

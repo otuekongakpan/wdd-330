@@ -10,17 +10,18 @@ function formDataToJSON(formElement) {
 }
 const baseURL = import.meta.env.VITE_SERVER_URL;
 
-function convertToJson(res) {
+async function convertToJson(res) {
+  const jsonResponse = await res.json();
+
   if (res.ok) {
-    return res.json();
+    return jsonResponse;
   } else {
-    throw new Error('Bad Response');
+    throw { name: 'servicesError', message: jsonResponse };
   }
 }
 
 export default class ExternalServices {
   constructor() {
-    // no category or path needed anymore
   }
 
   async getData(category) {
@@ -43,6 +44,6 @@ export default class ExternalServices {
       },
       body: JSON.stringify(payload)
     };
-    return await fetch('https://wdd-330-6zrw.onrender.com/checkout', options);
+   return await fetch('https://wdd330-backend.onrender.com/', options);
   }
 }

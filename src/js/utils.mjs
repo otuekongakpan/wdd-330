@@ -2,17 +2,17 @@
 export function qs(selector, parent = document) {
   return parent.querySelector(selector);
 }
-// or a more concise version if you are into that sort of thing:
-// export const qs = (selector, parent = document) => parent.querySelector(selector);
 
 // retrieve data from localstorage
 export function getLocalStorage(key) {
   return JSON.parse(localStorage.getItem(key));
 }
+
 // save data to local storage
 export function setLocalStorage(key, data) {
   localStorage.setItem(key, JSON.stringify(data));
 }
+
 // set a listener for both touchend and click
 export function setClick(selector, callback) {
   qs(selector).addEventListener('touchend', (event) => {
@@ -60,4 +60,29 @@ export async function loadHeaderFooter() {
 
   renderWithTemplate(headerTemplate, headerElement);
   renderWithTemplate(footerTemplate, footerElement);
+}
+
+//Custom alert for showing messages/errors to the user
+export function alertMessage(message, scroll = true) {
+  const existing = document.querySelector('.alert');
+  if (existing) existing.remove();
+
+  const alert = document.createElement('div');
+  alert.classList.add('alert');
+
+  alert.innerHTML = `
+    <p>${message}</p>
+    <span class="alert-close">✕</span>
+  `;
+
+  alert.addEventListener('click', function (e) {
+    if (e.target.classList.contains('alert-close')) {
+      alert.remove();
+    }
+  });
+
+  const main = document.querySelector('main');
+  main.prepend(alert);
+
+  if (scroll) window.scrollTo(0, 0);
 }
