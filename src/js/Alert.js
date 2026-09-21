@@ -10,14 +10,15 @@ export default class Alert {
   }
 
   async init() {
-    this.alerts = await new ProductData("alerts").getData();
+    const response = await fetch("../json/alerts.json");
+    this.alerts = await response.json();
   }
 
   async createAlerts() {
     await this.init();
 
     if (this.alerts.length > 0) {
-      console.log(this.alerts);
+      // console.log(this.alerts);
       this.alertSec = document.createElement("section");
       this.alertSec.setAttribute("class", "alert-list");
 
@@ -25,7 +26,7 @@ export default class Alert {
         let p = document.createElement("p");
 
         p.textContent = alert.message;
-        console.log(alert.message);
+        // console.log(alert.message);
         p.style.background = alert.background;
         p.style.color = alert.color;
 
@@ -38,7 +39,7 @@ export default class Alert {
 
   async displayAlerts() {
     const alertsSection = await this.createAlerts();
-    console.log(alertsSection);
+    // console.log(alertsSection);
 
     const main = document.querySelector("main");
     main.prepend(alertsSection);

@@ -37,20 +37,26 @@ export function renderListWithTemplate(templateFn, parentElement, list, position
 
   parentElement.insertAdjacentHTML(position, htmlStrings.join(''));
 }
-export function renderWithTemplate(template, parentElement, data, callback) {
-  parentElement.innerHTML = template;
 
-  if (callback) {
-    callback(data);
+export function renderWithTemplate(template, parentElement, data, callBackFn) {
+
+  const fragment = document.createRange().createContextualFragment(template);
+  parentElement.replaceChildren(fragment);
+
+  if(callBackFn){
+    callbackFn(data);
   }
 
-  // parentElement.insertAdjacentHTML(position, htmlStrings.join(''));
 }
 
-export async function loadTemplate(path) {
-  const response = await fetch(path);
-  const template = await response.text();
-  return template;
+async function loadTemplate(path){
+  const res = await fetch(`../partials/${path}.html`);
+  if(res.ok)
+  {
+    const data = res.text();
+    return data;
+  }
+  
 }
 
 // export async function loadHeaderFooter() {
@@ -76,13 +82,11 @@ export async function loadHeaderFooter() {
   const headerTemplate = await loadTemplate('../partials/header.html');
   const footerTemplate = await loadTemplate('../partials/footer.html');
 
-  const headerElement = document.getElementById('main-header');
-  const footerElement = document.getElementById('main-footer');
+  const headerParent = document.getElementById('main-header') // header placeholder
+  const footerParent = document.getElementById('main-footer') // footer placeholder
 
-  renderWithTemplate(headerTemplate, headerElement);
-  renderWithTemplate(footerTemplate, footerElement);
-  
-  updateCartCount(); 
+
+  renderWithTemplate(headerTemplate, headerParent);
+  renderWithTemplate(footerTemplate, footerParent);
+
 }
-
-
