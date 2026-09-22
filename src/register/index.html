@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Create your SleepOutside account." />
+    <title>Sleep Outside | Register</title>
+
+    <link rel="stylesheet" href="/css/style.css" media="print" onload="this.media='all'" />
+    <noscript><link rel="stylesheet" href="/css/style.css" /></noscript>
+
+    <script src="/register/register.js" type="module" defer></script>
+  </head>
+
+  <body>
+    <header class="divider" role="banner" id="main-header"></header>
+
+    <main class="divider">
+      <h2>Create Your Account</h2>
+
+      <form id="register-form" enctype="multipart/form-data">
+        <fieldset>
+          <legend>Name</legend>
+          <label>First Name
+            <input type="text" name="fname" id="fname" required />
+          </label>
+          <label>Last Name
+            <input type="text" name="lname" id="lname" required />
+          </label>
+        </fieldset>
+
+        <fieldset>
+          <legend>Address</legend>
+          <label>Street
+            <input type="text" name="street" id="street" required />
+          </label>
+          <label>City
+            <input type="text" name="city" id="city" required />
+          </label>
+          <label>State
+            <input type="text" name="state" id="state" required />
+          </label>
+          <label>Zip Code
+            <input type="text" name="zip" id="zip" required />
+          </label>
+        </fieldset>
+
+        <fieldset>
+          <legend>Account</legend>
+          <label>Email
+            <input type="email" name="email" id="email" required />
+          </label>
+          <label>Password
+            <input type="password" name="password" id="password" required minlength="6" />
+          </label>
+        </fieldset>
+
+        <!-- Stretch Goal: Avatar -->
+        <fieldset>
+          <legend>Avatar (optional)</legend>
+          <label>Profile Picture
+            <input type="file" name="avatar" id="avatar" accept="image/*" />
+          </label>
+        </fieldset>
+
+        <button type="submit" id="registerSubmit">Create Account</button>
+      </form>
+    </main>
+
+    <footer role="contentinfo" id="main-footer"></footer>
+  </body>
+</html>

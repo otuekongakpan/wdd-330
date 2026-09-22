@@ -8,6 +8,7 @@ function formDataToJSON(formElement) {
 
   return convertedJSON;
 }
+
 const baseURL = import.meta.env.VITE_SERVER_URL;
 
 async function convertToJson(res) {
@@ -21,8 +22,7 @@ async function convertToJson(res) {
 }
 
 export default class ExternalServices {
-  constructor() {
-  }
+  constructor() {}
 
   async getData(category) {
     const response = await fetch(`${baseURL}products/search/${category}`);
@@ -44,6 +44,33 @@ export default class ExternalServices {
       },
       body: JSON.stringify(payload)
     };
-   return await fetch('https://wdd330-backend.onrender.com/', options);
+    return await fetch(`${baseURL}checkout`, options);  
+  }
+
+  async register(formElement) {
+    const formData = new FormData(formElement);
+    const avatarFile = formData.get('avatar');
+   
+    if (!avatarFile || avatarFile.size === 0) {
+      formData.delete('avatar'); 
+
+      const payload = {};
+      for (const [key, value] of formData.entries()) {
+        payload[key] = typeof value === 'string' ? value.trim() : value;
+      }
+
+      const options = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      };
+      return await fetch(`${baseURL}users`, options);
+    }
+
+    const options = {
+      method: 'POST',
+      body: formData
+    };
+    return await fetch(`${baseURL}users`, options);
   }
 }
