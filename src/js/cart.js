@@ -3,7 +3,7 @@ import { loadHeaderFooter } from "./utils.mjs";
 
 function getCartItems() {
   const cartItems = getLocalStorage("so-cart") || [];
-
+  // migrate any older items that don't have a quantity yet
   return cartItems.map((item) => ({
     quantity: 1,
     ...item,
@@ -41,17 +41,19 @@ function renderCartContents() {
 }
 
 function cartItemTemplate(item, index) {
+  const imageSrc = item.Images?.PrimaryMedium || item.Image || "";
+
   const newItem = `<li class="cart-card divider" data-index="${index}">
   <a href="#" class="cart-card__image">
     <img
-      src="${item.Images.PrimaryMedium}"
+      src="${imageSrc}"
       alt="${item.Name}"
     />
   </a>
   <a href="#">
     <h2 class="card__name">${item.Name}</h2>
   </a>
-  <p class="cart-card__color">${item.Colors[0].ColorName}</p>
+  <p class="cart-card__color">${item.Colors?.[0]?.ColorName || ""}</p>
   <p class="cart-card__quantity">
     qty:
     <button class="qty-btn qty-decrease" data-index="${index}" aria-label="Decrease quantity">-</button>
