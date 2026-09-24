@@ -1,69 +1,89 @@
-// wrapper for querySelector...returns matching element
+
 export function qs(selector, parent = document) {
   return parent.querySelector(selector);
 }
-// or a more concise version if you are into that sort of thing:
-// export const qs = (selector, parent = document) => parent.querySelector(selector);
 
-// retrieve data from localstorage
+
 export function getLocalStorage(key) {
-  return JSON.parse(localStorage.getItem(key));
+  try {
+    return JSON.parse(localStorage.getItem(key));
+  } catch (err) {
+    console.error(`Could not parse localStorage key "${key}":`, err);
+    return null;
+  }
 }
-// save data to local storage
+
+
 export function setLocalStorage(key, data) {
   localStorage.setItem(key, JSON.stringify(data));
 }
+
 // set a listener for both touchend and click
 export function setClick(selector, callback) {
-  qs(selector).addEventListener('touchend', (event) => {
+  const element = qs(selector);
+  if (!element) {
+    console.warn(`setClick: no element found for "${selector}"`);
+    return;
+  }
+
+  element.addEventListener("touchend", (event) => {
     event.preventDefault();
-    callback();
+    callback(event);
   });
-  qs(selector).addEventListener('click', callback);
+  element.addEventListener("click", callback);
 }
 
+
 export function getParam(param) {
-  const queryString = window.location.search;
-  const urlParams = new URLSearchParams(queryString);
+  const urlParams = new URLSearchParams(window.location.search);
   return urlParams.get(param);
 }
 
-export function renderListWithTemplate(templateFn, parentElement, list, position = "afterbegin", clear = false) {
+export function renderListWithTemplate(
+  templateFn,
+  parentElement,
+  list,
+  position = "afterbegin",
+  clear = false
+) {
   const htmlStrings = list.map(templateFn);
 
   if (clear) {
     parentElement.innerHTML = "";
   }
 
-  parentElement.insertAdjacentHTML(position, htmlStrings.join(''));
+  parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
 }
 
-export function renderWithTemplate(template, parentElement, data, callBackFn) {
+export function renderWithTemplate(template, parentElement, data, callback) {
+  if (!parentElement) {
+    console.warn("renderWithTemplate: parent element not found");
+    return;
+  }
 
   const fragment = document.createRange().createContextualFragment(template);
   parentElement.replaceChildren(fragment);
 
-  if(callBackFn){
-    callbackFn(data);
+  if (callback) {
+    callback(data);
   }
-
 }
 
-async function loadTemplate(path){
-  const res = await fetch(`../public/partials/${path}.html`);
-  if(res.ok)
-  {
-    const data = res.text();
-    return data;
+
+async function loadTemplate(name) {
+  const res = await fetch(`/partials/${name}.html`);
+  if (!res.ok) {
+    throw new Error(`Could not load partial "${name}" (HTTP ${res.status})`);
   }
-  
+  return res.text();
 }
 
 export async function loadHeaderFooter()
 {
 
-  const headerParent = document.getElementById('main-header') // header placeholder
-  const footerParent = document.getElementById('main-footer') // footer placeholder
+    const headerParent = document.getElementById("main-header");
+    const footerParent = document.getElementById("main-footer");
+
 
   const headerTemplate = await loadTemplate('header');
   const footerTemplate = await loadTemplate('footer');
@@ -75,4 +95,5 @@ export async function loadHeaderFooter()
   renderWithTemplate(footerTemplate, footerElement);
   
   updateCartCount(); 
+
 }
