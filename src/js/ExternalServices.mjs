@@ -1,14 +1,3 @@
-function formDataToJSON(formElement) {
-  const formData = new FormData(formElement),
-    convertedJSON = {};
-
-  formData.forEach(function (value, key) {
-    convertedJSON[key] = typeof value === 'string' ? value.trim() : value;
-  });
-
-  return convertedJSON;
-}
-
 const baseURL = import.meta.env.VITE_SERVER_URL;
 
 async function convertToJson(res) {
@@ -44,33 +33,33 @@ export default class ExternalServices {
       },
       body: JSON.stringify(payload)
     };
-    return await fetch(`${baseURL}checkout`, options);  
+    return await fetch(`${baseURL}checkout`, options);
   }
 
   async register(formElement) {
     const formData = new FormData(formElement);
     const avatarFile = formData.get('avatar');
-   
+
     if (!avatarFile || avatarFile.size === 0) {
-      formData.delete('avatar'); 
+      formData.delete('avatar');
 
       const payload = {};
       for (const [key, value] of formData.entries()) {
         payload[key] = typeof value === 'string' ? value.trim() : value;
       }
 
-      const options = {
+      const jsonOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
       };
-      return await fetch(`${baseURL}users`, options);
+      return await fetch(`${baseURL}users`, jsonOptions);
     }
 
-    const options = {
+    const multiOptions = {
       method: 'POST',
       body: formData
     };
-    return await fetch(`${baseURL}users`, options);
+    return await fetch(`${baseURL}users`, multiOptions);
   }
 }
