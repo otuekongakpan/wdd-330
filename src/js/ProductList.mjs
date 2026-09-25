@@ -3,7 +3,6 @@ function productCardTemplate(product) {
   const discountPercent = isDiscounted
     ? Math.round(((product.SuggestedRetailPrice - product.FinalPrice) / product.SuggestedRetailPrice) * 100)
     : 0;
-
   return `<li class="product-card">
   <a href="/product_pages/index.html?product=${product.Id}">
     <img src="${product.Images.PrimaryMedium}" alt="Image of ${product.Name}">
@@ -26,10 +25,27 @@ export default class ProductList {
     this.category = category;
     this.dataSource = dataSource;
     this.listElement = listElement;
+    this.list = [];
   }
   async init() {
     const list = await this.dataSource.getData(this.category);
-    this.renderList(list);
+    this.list = list;
+    this.renderList(this.list);
+    const sortElement = document.querySelector("#sort");
+    if (sortElement) {
+      sortElement.addEventListener("change", (e) => {
+        this.sortList(e.target.value);
+      });
+    }
+  }
+  sortList(criteria) {
+    if (!criteria) { this.renderList(this.list); return; }
+    let sorted = [...this.list];
+    if (criteria === "name-asc") sorted.sort((a, b) => a.Name.localeCompare(b.Name));
+    else if (criteria === "name-desc") sorted.sort((a, b) => b.Name.localeCompare(a.Name));
+    else if (criteria === "price-asc") sorted.sort((a, b) => a.FinalPrice - b.FinalPrice);
+    else if (criteria === "price-desc") sorted.sort((a, b) => b.FinalPrice - a.FinalPrice);
+    this.renderList(sorted);
   }
   renderList(list) {
     const html = list.map(productCardTemplate);
