@@ -3,14 +3,11 @@
   --font-headline: Haettenschweiler, "Arial Narrow Bold", Arial Narrow,
     sans-serif;
   font-display: swap;
-  /* colors */
   --primary-color: #f0a868;
   --secondary-color: #525b0f;
   --tertiary-color: #8a470c;
   --light-grey: #d0d0d0;
   --dark-grey: #303030;
-
-  /* sizes */
   --font-base: 18px;
   --small-font: 0.8em;
   --large-font: 1.2em;
@@ -77,7 +74,6 @@ p {
   font-size: var(--small-font);
   width: 110px;
   height: 80px;
-
   flex-direction: column;
   align-items: flex-end;
   box-shadow: 1px 1px 4px var(--light-grey);
@@ -92,11 +88,10 @@ p {
   margin-top: -1.3em;
 }
 
-.logo--square > div {
+.logo--square>div {
   margin-top: -1.7em;
 }
 
-/* utility classes */
 .highlight {
   color: var(--tertiary-color);
 }
@@ -116,9 +111,6 @@ button {
   border-bottom: 2px solid var(--primary-color);
 }
 
-/* End utility classes */
-
-/* Cart icon styles */
 .cart {
   padding-top: 1em;
   position: relative;
@@ -133,8 +125,6 @@ button {
   fill: gray;
 }
 
-/* End cart icon styles */
-
 .cart-count {
   position: absolute;
   top: -8px;
@@ -146,6 +136,7 @@ button {
   font-size: 12px;
   font-weight: bold;
 }
+
 .mission {
   position: absolute;
   top: 1rem;
@@ -183,16 +174,16 @@ button {
   color: var(--dark-grey);
 }
 
-.product-list img{
+.product-list img {
   width: 4rem;
 }
 
-/* Styles for product lists */
 .product-card {
   width: 100%;
   max-width: 250px;
   padding: 0.5em;
   border: 1px solid var(--light-grey);
+  position: relative;
 }
 
 .product-card h2,
@@ -209,8 +200,6 @@ button {
   font-size: 1em;
 }
 
-/* End product list card */
-
 .product-detail {
   padding: 1em;
   max-width: 500px;
@@ -221,12 +210,10 @@ button {
   width: 100%;
 }
 
-/* Start cart list card styles */
 .cart-card {
   display: grid;
   grid-template-columns: 25% auto 15%;
   font-size: var(--small-font);
-  /* max-height: 120px; */
   align-items: center;
 }
 
@@ -274,9 +261,9 @@ button {
     grid-template-columns: 150px auto 15%;
   }
 
-  .product-list img{
-  width: 8rem;
-}
+  .product-list img {
+    width: 8rem;
+  }
 }
 
 footer {
@@ -284,7 +271,6 @@ footer {
   padding: 1em;
 }
 
-/* Discount Badge */
 .discount-badge {
   position: absolute;
   top: 10px;
@@ -298,7 +284,6 @@ footer {
   z-index: 10;
 }
 
-/* Pricing Styles */
 .product-card__pricing {
   margin-top: 8px;
 }
@@ -321,11 +306,6 @@ footer {
   font-weight: bold;
 }
 
-/* Make product card relative for absolute positioning of badge */
-.product-card {
-  position: relative;
-}
-
 #newsltt {
   margin-bottom: 1rem;
 }
@@ -339,7 +319,6 @@ footer {
 }
 
 .s-edd {
-  /* display: block; */
   padding: 0.8rem;
   font-size: 1rem;
   border: none;
@@ -357,4 +336,39 @@ footer {
 
 .signup {
   border-right: 2px solid black;
+}
+
+/* Product Comments - W04 */
+.product-comments {
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 1em;
+  border-top: 2px solid var(--primary-color);
+}
+
+.product-comments h2,
+.product-comments h3 {
+  font-family: var(--font-headline);
+  margin: 0.5em 0;
+}
+
+#comment-list .comment {
+  border: 1px solid var(--light-grey);
+  padding: 0.75rem;
+  margin: 0.5rem 0;
+  background: white;
+}
+
+#comment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+#comment-form input,
+#comment-form textarea {
+  padding: 0.5em;
+  font-family: var(--font-body);
+  border: 1px solid var(--light-grey);
 }

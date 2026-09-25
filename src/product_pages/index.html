@@ -1,25 +1,94 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Sleep Outside | Cedar Ridge Rimrock 2-person tent</title>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sleep Outside | Cedar Ridge Rimrock 2-person tent</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <script src="../js/product.js" type="module"></script>
+</head>
 
-    <link rel="stylesheet" href="../css/style.css" />
+<body>
+  <!-- Header -->
+  <header class="divider" role="banner" id="main-header"></header>
 
-    <script src="../js/product.js" type="module"></script>
-    <script src="../js/ProductDetails.mjs" type="module"></script>
-  </head>
-  <body>
-    <!-- Header -->
-    <header class="divider" role="banner" id="main-header"></header>
-    <main class="divider">
-      <section class="product-detail" id="productDetail">
-        <!-- Empty: JavaScript will inject the product details here -->
-      </section>
-    </main>
+  <main class="divider">
+    <section class="product-detail" id="productDetail">
+      <!-- JavaScript will inject the product details here -->
+    </section>
 
-    <footer role="contentinfo" id="main-footer"></footer>
-  </body>
+    <!-- W04 - Product Comments Subsystem -->
+    <section class="product-comments"
+      style="max-width: 600px; margin: 2rem auto; border-top: 2px solid #ccc; padding-top: 1.5rem;">
+      <h2>Customer Comments</h2>
+      <div id="comment-list"></div>
+
+      <h3>Add a Comment</h3>
+      <form id="comment-form" style="display:flex; flex-direction:column; gap:0.5rem;">
+        <label for="comment-name">Name:</label>
+        <input type="text" id="comment-name" required placeholder="Your name" />
+
+        <label for="comment-text">Comment:</label>
+        <textarea id="comment-text" required placeholder="Write your review..." rows="4"></textarea>
+
+        <button type="submit" class="button">Submit Comment</button>
+      </form>
+    </section>
+  </main>
+
+  <footer role="contentinfo" id="main-footer"></footer>
+
+  <script type="module">
+    // Product Comments - No extra file needed
+    function getProductId() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get('product') || '880RR';
+    }
+
+    const productId = getProductId();
+    const storageKey = `so-comments-${productId}`;
+
+    function getComments() {
+      return JSON.parse(localStorage.getItem(storageKey)) || [];
+    }
+
+    function renderComments() {
+      const list = document.getElementById('comment-list');
+      const comments = getComments();
+      if (comments.length === 0) {
+        list.innerHTML = "<p><em>No comments yet. Be the first to comment!</em></p>";
+        return;
+      }
+      list.innerHTML = comments.map(c => `
+          <div style="border:1px solid #ddd; padding:0.7rem; margin:0.5rem 0; background:#f9f9f9;">
+            <strong>${c.name}</strong> <small>- ${c.date}</small>
+            <p style="margin:0.3rem 0 0;">${c.text}</p>
+          </div>
+        `).join("");
+    }
+
+    document.getElementById('comment-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('comment-name').value.trim();
+      const text = document.getElementById('comment-text').value.trim();
+      if (!name || !text) return;
+
+      const comments = getComments();
+      comments.push({
+        name,
+        text,
+        date: new Date().toLocaleDateString()
+      });
+      localStorage.setItem(storageKey, JSON.stringify(comments));
+
+      renderComments();
+      e.target.reset();
+    });
+
+    // Initial render
+    renderComments();
+  </script>
+</body>
+
 </html>
