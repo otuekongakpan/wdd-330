@@ -1,3 +1,5 @@
+import { setLocalStorage, getLocalStorage, updateCartCount } from "./utils.mjs";
+
 function convertToJson(res) {
   if (res.ok) {
     return res.json();
@@ -28,6 +30,15 @@ export default class ProductDetails {
     const cartItems = JSON.parse(localStorage.getItem("so-cart")) || [];
     cartItems.push(this.product);
     localStorage.setItem("so-cart", JSON.stringify(cartItems));
+
+    updateCartCount();
+
+    const cartIcon = document.querySelector(".cart");
+    cartIcon.classList.add("cart-animate");
+    
+    setTimeout(() => {
+      cartIcon.classList.remove("cart-animate");
+    }, 500);
 
   }
 
