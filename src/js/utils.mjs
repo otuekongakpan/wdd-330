@@ -69,9 +69,8 @@ export function renderWithTemplate(template, parentElement, data, callback) {
   }
 }
 
-
 async function loadTemplate(name) {
-  const res = await fetch(`/partials/${name}.html`);
+  const res = await fetch(`/partials/${name}.html`, { cache: "no-store" });
   if (!res.ok) {
     throw new Error(`Could not load partial "${name}" (HTTP ${res.status})`);
   }
