@@ -1,7 +1,7 @@
 // Alert Class
 // Creates an alert message for products
 
-import ProductData from "./ProductData.mjs";
+import ExternalServices from "./ExternalServices.mjs";
 
 export default class Alert {
   constructor() {

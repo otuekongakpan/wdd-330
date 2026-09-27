@@ -90,9 +90,7 @@ export async function loadHeaderFooter()
   renderWithTemplate(headerTemplate, headerParent);
   renderWithTemplate(footerTemplate, footerParent);
 
-  renderWithTemplate(headerTemplate, headerElement);
-  renderWithTemplate(footerTemplate, footerElement);
   
-  updateCartCount(); 
+  // updateCartCount(); 
 
 }

@@ -1,37 +1,75 @@
 <!doctype html>
 
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+  <meta charset="UTF-8" />
 
-    <meta
-      name="description"
-      content="Secure checkout at SleepOutside. Complete your order for tents, backpacks, sleeping bags, and camping gear."
-    />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Sleep Outside | Checkout</title>
+  <meta name="description"
+    content="Secure checkout at SleepOutside. Complete your order for tents, backpacks, sleeping bags, and camping gear." />
 
-    <link
-      rel="stylesheet"
-      href="/css/style.css"
-      media="print"
-      onload="this.media='all'"
-    />
+  <title>Sleep Outside | Checkout</title>
 
-    <noscript><link rel="stylesheet" href="/css/style.css" /></noscript>
-  </head>
+  <link rel="stylesheet" href="/css/style.css" media="print" onload="this.media='all'" />
 
-  <body>
-    <header class="divider" role="banner" id="main-header"></header>
+  <noscript>
+    <link rel="stylesheet" href="/css/style.css" />
+  </noscript>
 
-    <main class="divider">
-      <section class="products">
-        <h2>Review & Place your Order</h2>
-      </section>
-    </main>
+  <script src="../js/checkout.js" type="module" defer></script>
+</head>
 
-    <footer role="contentinfo" id="main-footer"></footer>
-  </body>
+<body>
+  <header class="divider" role="banner" id="main-header"></header>
+
+  <main class="divider">
+    <section class="products">
+      <h2>Review & Place your Order</h2>
+    </section>
+    <section>
+      <form name="checkout">
+        <input type="hidden" name="orderDate" id="orderDate" aria-label="Order Date">
+        <fieldset>
+          <legend>Shipping</legend>
+          <label>First Name<input type="text" id="fname" name="fname" required placeholder="john" value=" "></label>
+          <label>Last Name<input type="text" id="lname" name="lname" required placeholder="flomo" value=" "></label>
+          <label>Street Address <input type="text" id="street" name="street" required value=" "></label>
+          <label>City <input type="text" id="city" name="city" required value=" "></label>
+          <label>State <input type="text" id="state" name="state" required value=" "></label>
+          <label>Zip Code <input type="text" id="zip" name="zip" required value=" "></label>
+        </fieldset>
+        <fieldset>
+          <legend>Payment Method</legend>
+          <label>Credit Card Number <input type="text" id="cardNumber" name="cardNumber" value="1234123412341234"></label>
+          <label>Expiration Date <input type="date" id="expiration" name="expiration" require ></label>
+          <label>Security Number <input type="text" value="123"></label>
+        </fieldset>
+
+        <fieldset class="checkout-summary">
+          <legend>Order Summary</legend>
+
+          <div class="order__summary">
+            <div>Items</div>
+            <div id="num-items"></div>
+            <div>Subtotal</div>
+            <div id="cartTotal"></div>
+            <div>Tax</div>
+            <div id="tax"></div>
+            <div>Shipping</div>
+            <div id="shipping"></div>
+            <div>Total</div>
+            <div id="orderTotal"></div>
+          </div>
+        </fieldset>
+        <button type="submit" id="checkoutSubmit">Checkout</button>
+      </form>
+    </section>
+    <section id="cartSmry">
+  </main>
+
+  <footer role="contentinfo" id="main-footer"></footer>
+</body>
+
 </html>
