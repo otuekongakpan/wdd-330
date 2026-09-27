@@ -23,12 +23,12 @@ export default class CheckoutProcess {
     calculateItemSummary() {
         // calculate and display the total dollar amount of the items in the cart, and the number of items.
         // const summaryElement = getLocalStorage(this.key);
-        console.log(this.outputSelector + " #cartTotal")
+        // console.log(this.outputSelector + " #cartTotal")
         const subTotalElement = document.querySelector(this.outputSelector + ' #cartTotal');
         const itemNumElement = document.querySelector(this.outputSelector + " #num-items");
 
         this.itemTotal = this.list.reduce((total, item) => {
-            total += item.FinalPrice * item.quantity;
+            total += item.FinalPrice;
             return total
         }, 0);
 
@@ -75,14 +75,14 @@ export default class CheckoutProcess {
             }
         }
         )
-        console.log(simplifiedField);
+        // console.log(simplifiedField);
         return simplifiedField
     }
 
     async checkout() {
         const formElement = document.forms["checkout"];
         const order = this.formDataToJSON(formElement);
-        console.log(order);
+        // console.log(order);
 
         order.orderDate = new Date().toISOString();
         order.orderTotal = this.orderTotal;
@@ -92,11 +92,11 @@ export default class CheckoutProcess {
 
         try {
             const response = await service.checkout(order)
-            console.log("Order placed sucessfully!")
+            // console.log("Order placed sucessfully!")
         }
 
         catch (err) {
-            console.log(`Bad response ${err}`)
+            // console.log(`Bad response ${err}`)
         }
     }
 
