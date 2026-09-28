@@ -19,13 +19,23 @@ export default class ProductDetails {
       this.renderProductDetails();
 
       document.getElementById('addToCart')
-      .addEventListener('click', this.addProductToCart.bind(this));
+        .addEventListener('click', this.addProductToCart.bind(this));
 
     });
   }
 
   addProductToCart() {
     const cartItems = JSON.parse(localStorage.getItem("so-cart")) || [];
+    const productId = this.product.Brand.Id;
+
+    for (let cart of cartItems) {
+      if (cart.Brand.Id === productId) {
+        console.log(cart.quantity, typeof (cart.quantity));
+        cart.quantity++;
+        localStorage.setItem("so-cart", JSON.stringify(cartItems));
+        return
+      }
+    }
     cartItems.push(this.product);
     localStorage.setItem("so-cart", JSON.stringify(cartItems));
 
