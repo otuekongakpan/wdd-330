@@ -1,4 +1,4 @@
-import { getLocalStorage } from "../js/utils.mjs";
+import { alertMessage, getLocalStorage, removeAllAlerts } from "../js/utils.mjs";
 import ExternalServices from "./ExternalServices.mjs";
 
 const service = new ExternalServices();
@@ -91,12 +91,18 @@ export default class CheckoutProcess {
         order.items = this.packageItem(this.list);
 
         try {
-            const response = await service.checkout(order)
+            const response = await service.checkout(order);
+            setLocalStorage("so-cart", []);
+            window.location.href = "./success.html";
+
             // console.log("Order placed sucessfully!")
         }
 
         catch (err) {
-            // console.log(`Bad response ${err}`)
+            removeAllAlerts();
+            const messages = err.message && typeof err.messsage === "object"? Object.values(err.message): [err.message || "unable to place your order."]
+
+            messages.forEach((message) => alertMessage(message));
         }
     }
 

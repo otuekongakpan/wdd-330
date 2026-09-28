@@ -94,3 +94,32 @@ export async function loadHeaderFooter()
   // updateCartCount(); 
 
 }
+
+export function alertMessage(messages, scroll = true) {
+  const alert = document.createElement("div");
+  alert.className = "alert";
+
+  ;
+  for (const key of Object.keys(messages)) {
+    const text = document.createElement("p")
+    text.textContent = messages[key];
+    console.log(text);
+    const close = document.createElement("button");
+    close.type = "button";
+    close.textContent = "X";
+    close.setAttribute("aria-label", "Dismiss message");
+    close.addEventListener("click", () => alert.remove(this));
+    text.appendChild(close);
+    alert.appendChild(text);
+  }
+  
+
+  const main = qs("main");
+  main.prepend(alert);
+  if (scroll) window.scrollTo(0, 0);
+}
+
+
+export function removeAllAlerts() {
+  document.querySelectorAll(".alert").forEach(alert => alert.remove());
+}

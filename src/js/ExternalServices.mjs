@@ -4,10 +4,14 @@ function convertToJson(res) {
   if (res.ok) {
     return res.json();
   } else {
-    return res.json().then(error => {
-      console.log("Server error:", error);
-      throw new Error("Bad Response");
-    });
+    return res.json().then(jsonResponse => 
+      {
+        throw {
+          name: "Server Error",
+          message: jsonResponse
+        }
+      }
+    );
   }
 }
 
