@@ -1,27 +1,25 @@
-// import ExternalServices from "./ExternalServices.mjs";
-// import ProductList from "./ProductList.mjs";
-// import Alert from "./Alert.js";
-// import { loadHeaderFooter } from "./utils.mjs";
-
-// const dataSource = new ProductData('tents');
-// const listElement = document.querySelector('.product-list');
-// const productList = new ProductList('tents', dataSource, listElement);
-
-// productList.init();
-
-// const alert = new Alert();
-// alert.init();
-// alert.createAlerts();
-// alert.displayAlerts();
-// loadHeaderFooter();
-
-
 import Alert from "./Alert.js";
-import { loadHeaderFooter } from "./utils.mjs"; 
+
+import { loadHeaderFooter } from "./utils.mjs";
 
 const alert = new Alert();
+
 alert.init();
+
 alert.createAlerts();
+
 alert.displayAlerts();
 
-loadHeaderFooter();
+function updateCartCount() {
+  const cartCount = document.querySelector("#cart-count");
+
+  if (!cartCount) return;
+
+  const cartItems = JSON.parse(localStorage.getItem("so-cart")) || [];
+
+  cartCount.textContent = cartItems.length;
+}
+
+loadHeaderFooter().then(() => {
+  updateCartCount();
+});
